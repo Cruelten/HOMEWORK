@@ -1,0 +1,17 @@
+{
+  "name": "002console-homework-1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "date.js",
+  "bin": {
+    "mycmd": "./date.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Cruelten",
+  "license": "ISC",
+  "dependencies": {
+    "yargs": "^17.7.2"
+  }
+}
