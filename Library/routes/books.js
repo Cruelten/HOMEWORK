@@ -51,7 +51,8 @@ router.get('/:id/download', (req, res) => { //получаем ссылку на
     const idx = books.findIndex(el => el.id === id)
 
     if( idx !== -1) {
-        res.json(books[idx].fileBook)
+        // res.json(books[idx].fileBook)
+        res.download(books[idx].fileBook)
     } else {
         res.status(404)
         res.json('404 | страница не найдена')
