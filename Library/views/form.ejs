@@ -1,4 +1,4 @@
-<form method="POST" class="mt-5">
+<form method="POST" class="mt-5" enctype="multipart/form-data">
     <div class="form-group">
         <label for="inputTitle">Наименование книги</label>
         <input type="text"
@@ -25,6 +25,12 @@
                name="authors"
                class="form-control"
                id="inputAuthor">
+    </div>    
+
+
+    <div class="form-group">
+        <label for="inputTitle">Файл книги</label>
+        <input type="file" name="fileBook" />
     </div>    
 
     <div class="form-group text-right ">

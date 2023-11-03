@@ -4,7 +4,7 @@ const errorMiddleware = require('./middleware/error');
 
 
 const indexBoooks = require('./routes/index')
-// const indexBoooks = require('./routes/books')
+const apiBoooks = require('./routes/books')
 const listOfUser = require('./routes/user')
 
 
@@ -13,7 +13,7 @@ app.use(express.urlencoded());
 app.set("view engine", "ejs");
 
 app.use('/', indexBoooks) //работаем с книгами
-// app.use('/', indexBoooks) //работаем с api
+app.use('/api/books', apiBoooks) //работаем с книгами по API
 app.use('/api/user', listOfUser) //работаем с пользователями
 
 
