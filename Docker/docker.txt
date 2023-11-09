@@ -1,0 +1,36 @@
+Задание 1 - Docker CLI
+1. docker pull busybox  #загружаем последнюю версию busybox
+2. docker run --name pinger -it busybox ping -c 7 netology.ru   #запускаем контейнер из образа busybox, 7 раз пингуем сайт netology.ru 
+3. docker ps -a  #выводим все контейнеры, даже остановленные
+4. docker logs pinger #выводим в консоль что там наш пингер сделал
+5. docker start pinger #наш пингер опять сделает 7 раз пинг до сайта и остановится
+6. docker ps -a  #выводим все контейнеры, даже остановленные
+7. docker logs pinger #выводим в консоль что там наш пингер сделал
+8. По логам 7 packets received - значит 7 раз сдеалали пинг.
+9. docker rm pinger #удаляем наш контейнер пингер
+9. docker rmi busybox #удаляем наш образ busybox
+
+
+Задание 2 - Environment Variables
+1. docker pull node:15.14 #загружаем образы node 15.14 версии 
+2. docker run --name mynode -it --env NAME=Sergey --env SURNAME=Pishchenkov node:15.14 env | grep FIO #запускаем контейнер из образ node с именем mynode и передаем ему имя и фамилию в интерактивнов режиме
+3. console.log(`Привет, ${process.env.NAME} ${process.env.SURNAME}`) #выводим в консоль наши переменные
+4. docker stop mynode  #тормозим контейнер.
+5. docker rmi node:15.14 -f #удаляем наш образ node, игнориурем, что у нас даже есть контейнер на нем.
+
+Задание 3 - Volumes
+1. docker pull node:15.14 #загружаем образы node 15.14 версии 
+2. docker run -d -it --name first_node -v "$(pwd)":/var/first/data node:15.14  #создаем контейнер. Я уже нахожусь в папке data, поэтому подключение идет сразу. Работаю на Mac OS. Система запросила разрешить докеру вносить изменения в папку. Разрешил.
+3. docker run -d -it --name second_node -v "$(pwd)":/var/second/data node:15.14  #создаем 2 контейнер. Я уже нахожусь в папке data, поэтому подключение идет сразу. Работаю на Mac OS.
+4. docker exec -it first_node  touch /var/first/data/my.txt #в папке на хосте и непосредственно внутри докера создался файл my.txt
+4.1 docker exec -it first_node /bin/bash #откроем консоль контейнера, чтобы можно было просматривать содержимое контейнера
+4.2 cd /var/first/data #переходим в папку, где у нас файлы хранятся. 
+4.3 echo Hello >>my.txt #напишем в файле что-нибудь
+5. Зашел в папку на хосте и просто добавил туда любой файл с рабочего стола (mynewtext.txt). Этот файл отобразился внутри файловой системы контейнера (просматриваю в докере)
+6. docker exec -it second_node /bin/bash #получаем доступ к башу и можем ввести команду, чтобы посмотреть файлы нужные во втором контейнере.
+6.1 cd /var/second/data #переходим в папку, где у нас файлы хранятся. 
+6.2 ls #выводим все файлы, которые у нас есть в нашей папочке
+6.3 cat mynewtext.txt #выводим в консоль наши записульки
+7. docker stop $(docker ps -a -q) #остановим одной командой все наши два контейнера
+8. docker rm $(docker ps -a -q) #удаляем сразу оба контейнера
+9. docker rmi node:15.14 #удаляем наш образ node
