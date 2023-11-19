@@ -1,6 +1,39 @@
 # Сергей Пищенков
 ## Homework for Netology
 
+### MongoDB
+db.collection('books').insertOne(
+	{
+	  title: "Гаудот Полумертвый",
+	  description: "Современный ужастик",
+	  authors: "Чарльз Эвенстон"
+	}
+)
+
+db.collection('books').insertMany( [
+	{
+	  title: "Война и Мир",
+	  description: "Великая книга Льва Толстого",
+	  authors: "Лев Толстой"
+	},
+	{
+	  title: "Евгений Онегин",
+	  description: "Шедевр русской литературы",
+	  authors: "Александр Пушкин"
+	}	
+] )
+
+db.collection('books').find(
+	{title: "Война и Мир"}
+)
+
+db.collection('books').updateOne(
+  { _id: '546557544757768665' },
+  {
+    $set: { description: 'Новая книга в нашей библиотеке', authors: 'Лермонтов' }
+  }
+)
+
 ### Docker
 В папке Docker лежит текстовый файл, в котором изложены все мои действия с докером (работа ведется на Mac os)
 
