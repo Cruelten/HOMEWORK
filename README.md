@@ -1,6 +1,11 @@
 # Сергей Пищенков
 ## Homework for Netology
 
+### MongoDB + проект
+Добавлена папка lirary-mongo
+В этой папке работа приложения по роутеру /api/books
+Добавляем, удаляем, изменяем данные в базе данных.
+
 ### MongoDB
 db.collection('books').insertOne(
 	{
